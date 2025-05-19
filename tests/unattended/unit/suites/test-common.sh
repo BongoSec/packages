@@ -61,7 +61,7 @@ test-04-common_checkInstalled-all-installed-yum() {
 
     @mocktrue yum list installed
 
-    @mock grep bongosec-manager === @echo bongosec-manager.x86_64 5.0.0-1 @bongosec
+    @mock grep bongosec-manager === @echo bongosec-manager.x86_64 1.0.0-1 @bongosec
     @mkdir /var/ossec
 
     @mock grep bongosec-indexer === @echo bongosec-indexer.x86_64 1.13.2-1 @bongosec
@@ -105,7 +105,7 @@ test-04-common_checkInstalled-all-installed-yum() {
 }
 
 test-05-common_checkInstalled-all-installed-yum-assert() {
-    @echo "bongosec-manager.x86_64 5.0.0-1 @bongosec"
+    @echo "bongosec-manager.x86_64 1.0.0-1 @bongosec"
     @echo 1
 
     @echo "bongosec-indexer.x86_64 4.6.0-1 @bongosec"

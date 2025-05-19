@@ -6,7 +6,7 @@ source "${base_dir}"/bach.sh
 @setup-test {
     @ignore common_logger
     k_certs_path="/etc/bongosec-dashboard/certs/"
-    bongosec_version="5.0.0"
+    bongosec_version="1.0.0"
     elasticsearch_oss_version="7.10.2"
     bongosec_kibana_plugin_revision="1"
     repobaseurl="https://packages.bongosec.com/4.x"
@@ -55,7 +55,7 @@ test-03-dashboard_install-yum() {
     load-dashboard_install
     sys_type="yum"
     sep="-"
-    bongosec_version="5.0.0"
+    bongosec_version="1.0.0"
     bongosec_revision="1"
     dashboard_install
 }
@@ -68,7 +68,7 @@ test-ASSERT-FAIL-04-dashboard_install-yum-error() {
     load-dashboard_install
     sys_type="yum"
     sep="-"
-    bongosec_version="5.0.0"
+    bongosec_version="1.0.0"
     bongosec_revision="1"
     @mockfalse yum install bongosec-dashboard-1.13.2-1 -y
     dashboard_install
@@ -78,7 +78,7 @@ test-05-dashboard_install-apt() {
     load-dashboard_install
     sys_type="apt-get"
     sep="="
-    bongosec_version="5.0.0"
+    bongosec_version="1.0.0"
     bongosec_revision="1"
     dashboard_install
 }
@@ -91,7 +91,7 @@ test-ASSERT-FAIL-06-dashboard_install-apt-error() {
     load-dashboard_install
     sys_type="apt-get"
     sep="="
-    bongosec_version="5.0.0"
+    bongosec_version="1.0.0"
     bongosec_revision="1"
     @mockfalse apt install bongosec-dashboard=1.13.2-1 -y
     dashboard_install

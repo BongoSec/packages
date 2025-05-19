@@ -1,6 +1,6 @@
 # Spec file for AIX systems
 Name:        bongosec-agent
-Version:     5.0.0
+Version:     1.0.0
 Release:     1
 License:     GPL
 URL:         https://www.bongosec.com/
@@ -291,7 +291,7 @@ rm -fr %{buildroot}
 %attr(750, root, bongosec) %{_localstatedir}/wodles/*
 
 %changelog
-* Thu Dec 12 2024 support <info@bongosec.com> - 5.0.0
+* Thu Dec 12 2024 support <info@bongosec.com> - 1.0.0
 - More info: https://documentation.bongosec.com/current/release-notes/release-5-0-0.html
 * Tue Oct 01 2024 support <info@bongosec.com> - 4.10.0
 - More info: https://documentation.bongosec.com/current/release-notes/release-4-10-0.html

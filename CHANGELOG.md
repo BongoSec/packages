@@ -1,8 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
-## [5.0.0]
+## [1.0.0]
 
-- https://github.com/bongosec/packages/releases/tag/v5.0.0
+- https://github.com/bongosec/packages/releases/tag/v1.0.0
 
 ## [4.10.0]
 

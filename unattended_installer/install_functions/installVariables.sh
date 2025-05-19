@@ -8,7 +8,7 @@
 
 ## Package vars
 readonly bongosec_major="5.0"
-readonly bongosec_version="5.0.0"
+readonly bongosec_version="1.0.0"
 readonly filebeat_version="7.10.2"
 readonly bongosec_install_version="0.1"
 readonly source_branch="v${bongosec_version}"

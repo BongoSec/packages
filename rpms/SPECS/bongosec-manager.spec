@@ -7,7 +7,7 @@
 
 Summary:     Bongosec helps you to gain security visibility into your infrastructure by monitoring hosts at an operating system and application level. It provides the following capabilities: log analysis, file integrity monitoring, intrusions detection and policy and compliance monitoring
 Name:        bongosec-manager
-Version:     5.0.0
+Version:     1.0.0
 Release:     %{_release}
 License:     GPL
 Group:       System Environment/Daemons
@@ -887,7 +887,7 @@ rm -fr %{buildroot}
 %attr(750, root, bongosec) %{_localstatedir}/wodles/gcloud/*
 
 %changelog
-* Thu Dec 12 2024 support <info@bongosec.com> - 5.0.0
+* Thu Dec 12 2024 support <info@bongosec.com> - 1.0.0
 - More info: https://documentation.bongosec.com/current/release-notes/release-5-0-0.html
 * Tue Oct 01 2024 support <info@bongosec.com> - 4.10.0
 - More info: https://documentation.bongosec.com/current/release-notes/release-4-10-0.html
