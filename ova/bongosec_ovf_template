@@ -21,7 +21,7 @@
       <Product>Bongosec v{BONGOSEC_VERSION} OVA</Product>
       <Vendor>Bongosec, inc &lt;info@bongosec.com&gt;</Vendor>
       <Version>{BONGOSEC_VERSION}</Version>
-      <ProductUrl>https://packages.bongosec.com/vm/bongosec-{BONGOSEC_VERSION}.ova</ProductUrl>
+      <ProductUrl>https://bongosec.github.io/packages/vm/bongosec-{BONGOSEC_VERSION}.ova</ProductUrl>
       <VendorUrl>https://bongosec.com</VendorUrl>
     </ProductSection>
     <AnnotationSection>

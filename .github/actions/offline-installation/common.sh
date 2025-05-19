@@ -101,14 +101,14 @@ function download_resources() {
     bash "${ABSOLUTE_PATH}"/bongosec-install.sh -dw "${sys_type}"
     echo "INFO: Downloading the resources..."
 
-    curl -sO https://packages.bongosec.com/4.3/config.yml
+    curl -sO https://bongosec.github.io/packages/4.3/config.yml
     check_file "config.yml"
 
     sed -i -e '0,/<indexer-node-ip>/ s/<indexer-node-ip>/127.0.0.1/' config.yml
     sed -i -e '0,/<bongosec-manager-ip>/ s/<bongosec-manager-ip>/127.0.0.1/' config.yml
     sed -i -e '0,/<dashboard-node-ip>/ s/<dashboard-node-ip>/127.0.0.1/' config.yml
 
-    curl -sO https://packages.bongosec.com/4.3/bongosec-certs-tool.sh
+    curl -sO https://bongosec.github.io/packages/4.3/bongosec-certs-tool.sh
     check_file "bongosec-certs-tool.sh"
     chmod 744 bongosec-certs-tool.sh
     ./bongosec-certs-tool.sh --all

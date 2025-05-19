@@ -102,7 +102,7 @@ build_ova() {
     vboxmanage export "${VM_EXPORT}" -o "${OVA_VM}" \
     --vsys 0 \
     --product "Bongosec v${OVA_VERSION} OVA" \
-    --producturl "https://packages.bongosec.com/vm/bongosec-${OVA_VERSION}.ova" \
+    --producturl "https://bongosec.github.io/packages/vm/bongosec-${OVA_VERSION}.ova" \
     --vendor "Bongosec, inc <info@bongosec.com>" --vendorurl "https://bongosec.com" \
     --version "$OVA_VERSION" --description "Bongosec enhances security visibility in your infrastructure by monitoring endpoints at the operating system and application levels. Its capabilities include log analysis, file integrity monitoring, intrusion detection, and compliance monitoring." \
     || clean 1

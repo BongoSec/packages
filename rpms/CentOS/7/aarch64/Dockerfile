@@ -1,7 +1,7 @@
 FROM arm64v8/centos:7
 
 # Enable EPEL
-RUN yum install -y http://packages.bongosec.com/utils/pkg/epel-release-latest-7.noarch.rpm
+RUN yum install -y http://bongosec.github.io/packages/utils/pkg/epel-release-latest-7.noarch.rpm
 
 # Install all the necessary tools to build the packages
 RUN yum install -y gcc make wget git \

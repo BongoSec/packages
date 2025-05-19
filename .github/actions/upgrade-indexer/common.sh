@@ -59,8 +59,8 @@ function compare_arrays() {
 # Steps before installing the RPM release package.
 function add_production_repository() {
 
-    rpm --import https://packages.bongosec.com/key/GPG-KEY-BONGOSEC
-    echo -e '[bongosec]\ngpgcheck=1\ngpgkey=https://packages.bongosec.com/key/GPG-KEY-BONGOSEC\nenabled=1\nname=EL-$releasever - Bongosec\nbaseurl=https://packages.bongosec.com/4.x/yum/\nprotect=1' | tee /etc/yum.repos.d/bongosec.repo
+    rpm --import https://bongosec.github.io/packages/key/GPG-KEY-BONGOSEC
+    echo -e '[bongosec]\ngpgcheck=1\ngpgkey=https://bongosec.github.io/packages/key/GPG-KEY-BONGOSEC\nenabled=1\nname=EL-$releasever - Bongosec\nbaseurl=https://bongosec.github.io/packages/4.x/yum/\nprotect=1' | tee /etc/yum.repos.d/bongosec.repo
 
 }
 

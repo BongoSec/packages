@@ -78,11 +78,11 @@ function buildInstaller() {
         echo 'readonly repository="'"${devrepo}"'"' >> "${output_script_path}"
         sed -i 's|v${bongosec_version}|${bongosec_version}|g' "${resources_installer}/installVariables.sh"
     else
-        echo 'readonly repogpg="https://packages.bongosec.com/key/GPG-KEY-BONGOSEC"' >> "${output_script_path}"
-        echo 'readonly repobaseurl="https://packages.bongosec.com/4.x"' >> "${output_script_path}"
+        echo 'readonly repogpg="https://bongosec.github.io/packages/key/GPG-KEY-BONGOSEC"' >> "${output_script_path}"
+        echo 'readonly repobaseurl="https://bongosec.github.io/packages/4.x"' >> "${output_script_path}"
         echo 'readonly reporelease="stable"' >> "${output_script_path}"
         echo 'readonly filebeat_bongosec_module="${repobaseurl}/filebeat/bongosec-filebeat-0.4.tar.gz"' >> "${output_script_path}"
-        echo 'readonly bucket="packages.bongosec.com"' >> "${output_script_path}"
+        echo 'readonly bucket="bongosec.github.io/packages"' >> "${output_script_path}"
         echo 'readonly repository="4.x"' >> "${output_script_path}"
     fi
     echo >> "${output_script_path}"
@@ -287,7 +287,7 @@ function checkDistDetectURL() {
 
     urls=("https://raw.githubusercontent.com/bongosec/bongosec/${source_branch}/src/init/dist-detect.sh"
           "https://raw.githubusercontent.com/bongosec/bongosec/v${source_branch}/src/init/dist-detect.sh"
-          "https://raw.githubusercontent.com/bongosec/bongosec/master/src/init/dist-detect.sh")
+          "https://raw.githubusercontent.com/bongosec/bongosec/main/src/init/dist-detect.sh")
 
     for url in "${urls[@]}"; do
         eval "curl -s -o /dev/null '${url}' --retry 5 --retry-delay 5 --max-time 300 --fail"
@@ -310,7 +310,7 @@ function checkFilebeatURL() {
 
     # Import variables
     eval "$(grep -E "filebeat_bongosec_template=" "${resources_installer}/installVariables.sh")"
-    new_filebeat_url="https://raw.githubusercontent.com/bongosec/bongosec/master/extensions/elasticsearch/7.x/bongosec-template.json"
+    new_filebeat_url="https://raw.githubusercontent.com/bongosec/bongosec/main/extensions/elasticsearch/7.x/bongosec-template.json"
 
     # Get the response of the URL and check it
     response=$(curl -I --write-out '%{http_code}' --silent --output /dev/null $filebeat_bongosec_template)

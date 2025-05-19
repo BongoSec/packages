@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Preinstall the latest stable version of the Bongosec indexer package
         run: |
-          curl -s https://packages.bongosec.com/key/GPG-KEY-BONGOSEC | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/bongosec.gpg --import && chmod 644 /usr/share/keyrings/bongosec.gpg
-          echo "deb [signed-by=/usr/share/keyrings/bongosec.gpg] https://packages.bongosec.com/4.x/apt/ stable main" | sudo tee -a /etc/apt/sources.list.d/bongosec.list
+          curl -s https://bongosec.github.io/packages/key/GPG-KEY-BONGOSEC | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/bongosec.gpg --import && chmod 644 /usr/share/keyrings/bongosec.gpg
+          echo "deb [signed-by=/usr/share/keyrings/bongosec.gpg] https://bongosec.github.io/packages/4.x/apt/ stable main" | sudo tee -a /etc/apt/sources.list.d/bongosec.list
           sudo apt-get update
 
       - name: Get the latest stable Bongosec version (all components)
