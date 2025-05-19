@@ -60,4 +60,18 @@ jobs:
         run: cp $GITHUB_WORKSPACE/bongosec-install.sh $GITHUB_WORKSPACE/.github/actions/offline-installation/bongosec-install.sh
 
       - name: Launch docker and run script
-        run: sudo docker run -v $GITHUB_WORKSPACE/.github/actions/offline-installation/:/tests centos:centos7 bash /tests/offline-installation.sh
+        run: |
+          # Create a temporary Dockerfile to set up CentOS 7 with vault repositories
+          cat > Dockerfile.centos7 << 'EOF'
+          FROM centos:7
+          RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/*.repo && \
+              sed -i 's|#baseurl=http://mirror.centos.org/centos/$releasever|baseurl=http://vault.centos.org/7.9.2009|g' /etc/yum.repos.d/*.repo && \
+              yum clean all && \
+              yum makecache
+          EOF
+          
+          # Build the custom CentOS 7 image
+          docker build -t centos7-vault -f Dockerfile.centos7 .
+          
+          # Run the container with the custom image
+          sudo docker run -v $GITHUB_WORKSPACE/.github/actions/offline-installation/:/tests centos7-vault bash /tests/offline-installation.sh
