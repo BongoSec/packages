@@ -1,0 +1,9 @@
+bongosec-manager: embedded-library
+bongosec-manager: embedded-zlib
+bongosec-manager: possible-gpl-code-linked-with-openssl
+bongosec-manager: new-package-should-close-itp-bug
+bongosec-manager: possibly-insecure-handling-of-tmp-files-in-maintainer-script
+bongosec-manager: non-standard-dir-in-var
+bongosec-manager: file-in-unusual-dir
+bongosec-manager: hardening-no-fortify-functions
+bongosec-manager: hardening-no-relro

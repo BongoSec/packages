@@ -1,0 +1,85 @@
+#!/bin/sh
+# preinst script for bongosec-agent
+
+set -e
+
+# configuration variables
+DIR="/var/ossec"
+BONGOSEC_TMP_DIR="${DIR}/packages_files/agent_config_files"
+
+# environment configuration
+if [ ! -d ${BONGOSEC_TMP_DIR} ]; then
+    mkdir -p ${BONGOSEC_TMP_DIR}
+else
+    rm -rf ${BONGOSEC_TMP_DIR}
+    mkdir -p ${BONGOSEC_TMP_DIR}
+fi
+
+case "$1" in
+    install|upgrade)
+
+        if [ "$1" = "upgrade" ]; then
+            if command -v systemctl > /dev/null 2>&1 && systemctl > /dev/null 2>&1 && systemctl is-active --quiet bongosec-agent > /dev/null 2>&1; then
+                systemctl stop bongosec-agent.service > /dev/null 2>&1
+                touch ${BONGOSEC_TMP_DIR}/bongosec.restart
+            elif command -v service > /dev/null 2>&1 && service bongosec-agent status 2>/dev/null | grep "is running" > /dev/null 2>&1; then
+                service bongosec-agent stop > /dev/null 2>&1
+                touch ${BONGOSEC_TMP_DIR}/bongosec.restart
+            elif ${DIR}/bin/bongosec-control status 2>/dev/null | grep "is running" > /dev/null 2>&1; then
+                touch ${BONGOSEC_TMP_DIR}/bongosec.restart
+            elif ${DIR}/bin/ossec-control status 2>/dev/null | grep "is running" > /dev/null 2>&1; then
+                touch ${BONGOSEC_TMP_DIR}/bongosec.restart
+            fi
+            ${DIR}/bin/ossec-control stop > /dev/null 2>&1 || ${DIR}/bin/bongosec-control stop > /dev/null 2>&1
+            
+            if [ -d ${DIR}/logs/ossec ]; then
+                mv ${DIR}/logs/ossec ${DIR}/logs/bongosec
+            fi
+            
+            if [ -d ${DIR}/queue/ossec ]; then
+                mv ${DIR}/queue/ossec ${DIR}/queue/sockets
+            fi
+        fi
+
+        if [ ! -z "$2" ] && [ ! -f ${DIR}/etc/ossec.conf ] ; then
+            touch ${BONGOSEC_TMP_DIR}/create_conf
+        fi
+
+        # Delete old service
+        if [ -f /etc/init.d/ossec ]; then
+            rm /etc/init.d/ossec
+        fi
+        # back up the current user rules
+        if [ -f ${DIR}/etc/client.keys ]; then
+            cp ${DIR}/etc/client.keys ${BONGOSEC_TMP_DIR}/client.keys
+        fi
+        if [ -f ${DIR}/etc/local_internal_options.conf ]; then
+            cp -p ${DIR}/etc/local_internal_options.conf ${BONGOSEC_TMP_DIR}/local_internal_options.conf
+        fi
+        if [ -f ${DIR}/etc/ossec.conf ]; then
+            cp -p ${DIR}/etc/ossec.conf ${BONGOSEC_TMP_DIR}/ossec.conf
+        fi
+
+        if [ -d ${DIR}/etc/shared ]; then
+            files="$(ls -A ${DIR}/etc/shared/*)"
+        fi
+
+        if [ ! -z "$files" ]; then
+            mkdir -p ${BONGOSEC_TMP_DIR}/group
+            cp -rp ${DIR}/etc/shared/* ${BONGOSEC_TMP_DIR}/group/
+        fi
+    ;;
+
+    abort-upgrade)
+
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 1
+
+    ;;
+
+esac
+
+exit 0

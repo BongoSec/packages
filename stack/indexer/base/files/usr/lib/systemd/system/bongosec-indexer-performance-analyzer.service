@@ -1,0 +1,16 @@
+[Unit]
+Description=Bongosec-indexer Performance Analyzer
+PartOf=bongosec-indexer.service
+After=bongosec-indexer.service
+
+[Service]
+ExecStart=/usr/share/bongosec-indexer/bin/opensearch-performance-analyzer/performance-analyzer-agent-cli
+Restart=on-failure
+User=bongosec-indexer
+Group=bongosec-indexer
+Environment=OPENSEARCH_HOME=/usr/share/bongosec-indexer
+Environment=OPENSEARCH_PATH_CONF=/etc/bongosec-indexer/
+WorkingDirectory=/usr/share/bongosec-indexer
+
+[Install]
+WantedBy=bongosec-indexer.service

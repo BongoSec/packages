@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# add something which happens before install
+
+directory_base="DIRECTORY_BASE"
+
+# Create the bongosec group if it doesn't exists
+if command -v getent > /dev/null 2>&1 && ! getent group bongosec > /dev/null 2>&1; then
+  addgroup -S bongosec
+elif ! id -g bongosec > /dev/null 2>&1; then
+  addgroup -S bongosec
+fi
+# Create the bongosec user if it doesn't exists
+if ! id -u bongosec > /dev/null 2>&1; then
+  adduser -S -G bongosec -h ${directory_base} -s /sbin/nologin bongosec
+fi
+
+exit 0

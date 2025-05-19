@@ -1,0 +1,10 @@
+nodes:
+  indexer:
+    - name: bongosec-indexer
+      ip: 127.0.0.1
+  server:
+    - name: bongosec-server
+      ip: 127.0.0.1
+  dashboard:
+    - name: bongosec-dashboard
+      ip: 127.0.0.1

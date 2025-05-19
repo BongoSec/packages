@@ -1,0 +1,12 @@
+NAME=Bongosec - Bongosec unifies historically separate functions into a single agent and platform architecture. Providing protection for public clouds, private clouds, and on-premise data centers.
+PKG="bongosec-agent"
+VERSION="5.0.0"
+ARCH="i386"
+CLASSES="none"
+CATEGORY="system"
+VENDOR="Bongosec, Inc <info@bongosec.com>"
+PSTAMP="12Dec2024"
+EMAIL="info@bongosec.com"
+ISTATES="S s 1 2 3"
+RSTATES="S s 1 2 3"
+BASEDIR="/var/ossec/"

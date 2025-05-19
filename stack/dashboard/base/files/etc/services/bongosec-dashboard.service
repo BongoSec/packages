@@ -1,0 +1,15 @@
+[Unit]
+Description=bongosec-dashboard
+
+[Service]
+Type=simple
+User=bongosec-dashboard
+Group=bongosec-dashboard
+EnvironmentFile=-/etc/default/bongosec-dashboard
+EnvironmentFile=-/etc/sysconfig/bongosec-dashboard
+ExecStart=/usr/share/bongosec-dashboard/bin/opensearch-dashboards
+WorkingDirectory=/usr/share/bongosec-dashboard
+
+[Install]
+WantedBy=multi-user.target
+

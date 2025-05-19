@@ -1,0 +1,14 @@
+Source: bongosec-agent
+Section: admin
+Priority: extra
+Maintainer: Bongosec, Inc <info@bongosec.com>
+Build-Depends: debhelper (>= 7.0.50~), make, gcc, linux-libc-dev, gawk, libaudit-dev, selinux-basics
+Standards-Version: 3.8.4
+Homepage: https://www.bongosec.com
+
+Package: bongosec-agent
+Architecture: any
+Depends: ${shlibs:Depends}, libc6 (>= 2.7), lsb-release, debconf, adduser
+Conflicts: ossec-hids-agent, bongosec-manager, ossec-hids, bongosec-api
+Breaks: ossec-hids-agent, bongosec-manager, ossec-hids
+Description: Bongosec helps you to gain security visibility into your infrastructure by monitoring hosts at an operating system and application level. It provides the following capabilities: log analysis, file integrity monitoring, intrusions detection and policy and compliance monitoring

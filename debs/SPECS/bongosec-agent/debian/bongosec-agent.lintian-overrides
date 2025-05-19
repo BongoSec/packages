@@ -1,0 +1,9 @@
+bongosec-agent: embedded-library
+bongosec-agent: embedded-zlib
+bongosec-agent: possible-gpl-code-linked-with-openssl
+bongosec-agent: new-package-should-close-itp-bug
+bongosec-agent: possibly-insecure-handling-of-tmp-files-in-maintainer-script
+bongosec-agent: non-standard-dir-in-var
+bongosec-agent: file-in-unusual-dir
+bongosec-agent: hardening-no-fortify-functions
+bongosec-agent: hardening-no-relro

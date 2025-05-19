@@ -1,0 +1,64 @@
+[Unit]
+Description=Bongosec-indexer
+Documentation=https://documentation.bongosec.com
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+RuntimeDirectory=bongosec-indexer
+PrivateTmp=yes
+Environment=OPENSEARCH_HOME=/usr/share/bongosec-indexer
+Environment=OPENSEARCH_PATH_CONF=/etc/bongosec-indexer
+Environment=PID_DIR=/run/bongosec-indexer
+Environment=OPENSEARCH_SD_NOTIFY=true
+EnvironmentFile=-/etc/sysconfig/bongosec-indexer
+
+WorkingDirectory=/usr/share/bongosec-indexer
+
+User=bongosec-indexer
+Group=bongosec-indexer
+
+ExecStart=/usr/share/bongosec-indexer/bin/systemd-entrypoint -p ${PID_DIR}/bongosec-indexer.pid --quiet
+
+# StandardOutput is configured to redirect to journalctl since
+# some error messages may be logged in standard output before
+# bongosec-indexer logging system is initialized. Elasticsearch
+# stores its logs in /var/log/bongosec-indexer and does not use
+# journalctl by default. If you also want to enable journalctl
+# logging, you can simply remove the "quiet" option from ExecStart.
+StandardOutput=journal
+StandardError=inherit
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+# Specifies the maximum number of processes
+LimitNPROC=4096
+
+# Specifies the maximum size of virtual memory
+LimitAS=infinity
+
+# Specifies the maximum file size
+LimitFSIZE=infinity
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
+# Send the signal only to the JVM rather than its control group
+KillMode=process
+
+# Java process is never killed
+SendSIGKILL=no
+
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+
+# Allow a slow startup before the systemd notifier module kicks in to extend the timeout
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target
